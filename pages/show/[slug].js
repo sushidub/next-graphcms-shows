@@ -58,7 +58,7 @@ export default function Shows({ show }) {
           <Portrait images={artist.images} />
 
           <FlexyRow justify="flex-start">
-            <a href={artist.webUrl} target="_blank">Website</a>
+            <a href={ artist.webUrl = artist.webUrl.substr("http") ? "http://" + artist.webUrl : artist.webUrl } target="_blank">Website</a>
             <a href={artist.facebookUrl} target="_blank">Facebook</a>
             <a href={artist.instagramUrl} target="_blank">Instagram</a>
             <a href={artist.youTubeUrl} target="_blank">YouTube</a>
