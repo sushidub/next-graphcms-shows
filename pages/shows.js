@@ -1,34 +1,39 @@
 import { useState } from 'react'
 import Layout from '@c/Layout'
-import { Grid, List, Card } from '@c/Grid'
+import { Grid, Card } from '@c/Grid'
+import { List, ListItem } from '@c/List'
 import { Title } from '@c/Title'
 import { getAllShows } from '@l/graphcms'
+import { formatDate } from '@l/utils'
 
 export default function Shows({ shows }) {
-  const [ showsDisplayState, setShowsDisplayState ] = useState(true); // true = Grid, false = List
 
-  function ToggleBtn() {
-    return (
-      <div>
-        <input className="toggle-btn" type="checkbox" value={showsDisplayState} onChange={setShowsDisplayState(!showsDisplayState)} />
-      </div>
-    );
+  const [ showsDisplayState, setShowsDisplayState ] = useState(true); // true = Grid, false = List
+  
+  function onToggleBtnChange(e) {
+    setShowsDisplayState(e.target.checked);
+  }
+
+  const ToggleBtn = (props) => {
+    return <input id="toggleDisplayState" name="toggledisplaystate" className="toggle-btn" type="checkbox" checked={props.displayState} onChange={onToggleBtnChange} />;
   }
 
   return (
     <Layout title="next-graphcms-shows / Shows">
       <Title>Shows</Title>
 
-      <ToggleBtn showState={showsDisplayState} />
+      <ToggleBtn displayState={showsDisplayState} />
+
       {!showsDisplayState &&
         <List>
+          {console.log(shows)}
           {shows.map(show => (
-            <li href={`/show/${show.slug}`} header={show.title} key={show.id}>
-              <p>{show.artists.map(({ fullName }) => fullName).join(', ')}</p>
-            </li>
+            <ListItem href={`/show/${show.slug}`} header={show.title} key={show.id}>
+              <div className="show-docket">{show.artists.map(({ fullName }) => fullName).join(', ')}</div>
+              <span className="show-date-start">{formatDate(show.scheduledStartTime,{timeZoneName:"MST"})}</span>
+            </ListItem>
           ))}
-        </List>
-      }
+        </List> }
 
       {showsDisplayState &&
       <Grid>
@@ -38,6 +43,7 @@ export default function Shows({ shows }) {
           </Card>
         ))}
       </Grid> }
+
     </Layout>
   )
 }

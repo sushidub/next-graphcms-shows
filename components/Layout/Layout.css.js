@@ -18,6 +18,7 @@ export const Main = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: ${(p) => p.alignItems};
+  width: 100%;
   max-width: ${(p) => p.maxWidth};
 `
 

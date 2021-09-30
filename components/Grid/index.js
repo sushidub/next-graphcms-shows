@@ -7,17 +7,18 @@ const CardStyle = css`
   flex-basis: 45%;
   padding: 1.5rem;
   text-align: left;
-  color: inherit;
   text-decoration: none;
   border: 1px solid var(--gallery-grey);
   border-radius: 10px;
-  transition: 150ms ease;
+  background-color: transparent;
+  color: inherit;
+  transition: background-color 150ms linear, color 150ms linear;
 
   :hover,
   :focus,
   :active {
-    color: #000;
-    background-color: var(--gallery-grey);
+    background-color: white;
+    color: black;
   }
 
   h3 {
