@@ -47,7 +47,6 @@ export default function Shows({ show, slug }) {
   } else {
     return (
       <Layout title={`${show.title} / next-graphcms-shows`} maxWidth="900px" padding="0 2em">
-        <i className="debug">{show.title}</i>
         <Title>{show.title}</Title>
 
         <FlexyRow>
@@ -64,10 +63,10 @@ export default function Shows({ show, slug }) {
             <Portrait images={artist.images} />
 
             <FlexyRow justify="flex-start">
-              <a href={ artist.webUrl = artist.webUrl.substr("http") ? "http://" + artist.webUrl : artist.webUrl } target="_blank">Website</a>
-              <a href={artist.facebookUrl} target="_blank">Facebook</a>
-              <a href={artist.instagramUrl} target="_blank">Instagram</a>
-              <a href={artist.youTubeUrl} target="_blank">YouTube</a>
+              { artist.webUrl && (artist.webUrl = artist.webUrl.substr(0,4) === "http" ? artist.webUrl : "http://" + artist.webUrl) && <a href={artist.webUrl} target="_blank">Website</a> }
+              { artist.facebookUrl && <a href={artist.facebookUrl} target="_blank">Facebook</a> }
+              { artist.instagramUrl && <a href={artist.instagramUrl} target="_blank">Instagram</a> }
+              { artist.youTubeUrl && <a href={artist.youTubeUrl} target="_blank">YouTube</a> }
             </FlexyRow>
 
             <Markdown source={artist.bio} />
