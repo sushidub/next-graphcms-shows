@@ -28,3 +28,84 @@ code {
     line-height: 1.5em;
   }
 }
+
+.link-default {
+  text-decoration: initial;
+  color: inherit;
+
+  &-underline {
+    text-decoration: underline;
+  }
+}
+.link-cloak {
+  text-decoration: none;
+  color: inherit;
+
+  :hover,
+  :focus,
+  :active {
+    color: inherit;
+  }
+}
+
+.display-util {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  width: 100%;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.display-util > :last-child {
+  margin-left: 1rem;
+}
+
+.display-util > .sorting-inputs {
+  margin-left: auto;
+}
+
+.display-util > .sorting-inputs > select {
+  margin-left: 0.5rem;
+}
+
+.display-util > .toggle-btn {
+  appearance: none;
+  width: 70px;
+  height: 32px;
+  background-size: contain;
+  background-position: right center, left center;
+  background-image: url("data:image/svg+xml,%3Csvg id='icon_list' xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32' preserveAspectRatio='xMidYMid meet'%3E%3Cpath fill='rgba(255,255,255,1)' d='M1,27.5H31v-2H1Zm0-7H31v-2H1Zm0-7H31v-2H1Zm0-9v2H31v-2Z'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg class='icon_grid' xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='rgba(255,255,255,0.5)' viewBox='0 0 32 32' preserveAspectRatio='xMidYMid meet'%3E%3Cpath d='M30,18H25a1,1,0,0,0-1,1v7a1,1,0,0,0,1,1h5a1,1,0,0,0,1-1V19A1,1,0,0,0,30,18ZM7,18H2a1,1,0,0,0-1,1v7a1,1,0,0,0,1,1H7a1,1,0,0,0,1-1V19A1,1,0,0,0,7,18Zm11.5,0h-5a1,1,0,0,0-1,1v7a1,1,0,0,0,1,1h5a1,1,0,0,0,1-1V19A1,1,0,0,0,18.5,18ZM30,5H25a1,1,0,0,0-1,1v7a1,1,0,0,0,1,1h5a1,1,0,0,0,1-1V6A1,1,0,0,0,30,5ZM7,5H2A1,1,0,0,0,1,6v7a1,1,0,0,0,1,1H7a1,1,0,0,0,1-1V6A1,1,0,0,0,7,5ZM18.5,5h-5a1,1,0,0,0-1,1v7a1,1,0,0,0,1,1h5a1,1,0,0,0,1-1V6A1,1,0,0,0,18.5,5Z'/%3E%3C/svg%3E");
+}
+
+.display-util > .toggle-btn:checked {
+  background-image: url("data:image/svg+xml,%3Csvg id='icon_list' xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32' preserveAspectRatio='xMidYMid meet'%3E%3Cpath fill='rgba(255,255,255,0.5)' d='M1,27.5H31v-2H1Zm0-7H31v-2H1Zm0-7H31v-2H1Zm0-9v2H31v-2Z'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg class='icon_grid' xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='rgba(255,255,255,1)' viewBox='0 0 32 32' preserveAspectRatio='xMidYMid meet'%3E%3Cpath d='M30,18H25a1,1,0,0,0-1,1v7a1,1,0,0,0,1,1h5a1,1,0,0,0,1-1V19A1,1,0,0,0,30,18ZM7,18H2a1,1,0,0,0-1,1v7a1,1,0,0,0,1,1H7a1,1,0,0,0,1-1V19A1,1,0,0,0,7,18Zm11.5,0h-5a1,1,0,0,0-1,1v7a1,1,0,0,0,1,1h5a1,1,0,0,0,1-1V19A1,1,0,0,0,18.5,18ZM30,5H25a1,1,0,0,0-1,1v7a1,1,0,0,0,1,1h5a1,1,0,0,0,1-1V6A1,1,0,0,0,30,5ZM7,5H2A1,1,0,0,0,1,6v7a1,1,0,0,0,1,1H7a1,1,0,0,0,1-1V6A1,1,0,0,0,7,5ZM18.5,5h-5a1,1,0,0,0-1,1v7a1,1,0,0,0,1,1h5a1,1,0,0,0,1-1V6A1,1,0,0,0,18.5,5Z'/%3E%3C/svg%3E");
+}
+
+.display-util > .toggle-btn:hover {
+  cursor: pointer;
+}
+
+select {
+  width: 200px;
+  padding: 0.5rem 1rem;
+  border: 1px solid white;
+  color: white;
+  background-size: auto 30%;
+  background-position: 95% center;
+  background-image: url("data:image/svg+xml,%3Csvg id='icon_chevron' xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32' preserveAspectRatio='xMidYMid meet'%3E%3Cpolygon fill='white' style='transform-origin:center' transform='rotate(90)' points='10.395 0 6 4.506 17.21 16 6 27.494 10.395 32 26 16 10.395 0'/%3E%3C/svg%3E");
+}
+
+.display-util > .shows-sort-dir {
+  display:inline-block;
+  width: 32px;
+  height: 32px;
+  background-size: contain;
+}
+
+.display-util > .shows-sort-dir[data-sort-dir="ASC"] {
+  background-image: url("data:image/svg+xml,%3Csvg id='icon_sort' xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32' preserveAspectRatio='xMidYMid meet'%3E%3Cpolygon style='transform-origin:center' transform='rotate(-90)' fill='white' points='16.923 3.303 28.692 15.047 0 15.047 0 16.953 28.692 16.953 16.923 28.697 18.411 30 32 16.439 32 15.561 18.411 2 16.923 3.303'/%3E%3C/svg%3E");
+}
+.display-util > .shows-sort-dir[data-sort-dir="DESC"] {
+  background-image: url("data:image/svg+xml,%3Csvg id='icon_sort' xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32' preserveAspectRatio='xMidYMid meet'%3E%3Cpolygon style='transform-origin:center' transform='rotate(90)' fill='white' points='16.923 3.303 28.692 15.047 0 15.047 0 16.953 28.692 16.953 16.923 28.697 18.411 30 32 16.439 32 15.561 18.411 2 16.923 3.303'/%3E%3C/svg%3E");
+}

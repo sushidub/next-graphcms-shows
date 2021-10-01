@@ -21,17 +21,9 @@ export const Main = styled.main`
   width: 100%;
   max-width: ${(p) => p.maxWidth};
 
-  .debug {
-    display: block;
-    width: 100%;
-    padding: 0.5rem 2rem;
-    font-style: normal;
-    font-size: 1rem;
-    background-color: red;
-  }
-
   blockquote {
     position: relative;
+    z-index: 1;
     font-size: 1.5rem;
     font-weight: bold;
     font-style: italic;
@@ -42,24 +34,23 @@ export const Main = styled.main`
     z-index: 0;
     position: absolute;
     font-size: 10rem;
-    transform: translate(-50px,-50px);
-    font-family: monos;
+    font-family: ui-monospace, monospaced;
     font-style: italic;
+    font-weight: 900;
+    transform: translate(-50px,-50px);
     opacity: .25;
   }
 `
 
 export const Footer = styled.footer`
-  width: 100%;
+  width: auto;
   max-width: 700px;
-  height: 100px;
+  min-height: 100px;
+  margin: 1rem;
+  padding: 1rem;
   border-top: 1px solid #eaeaea;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   a {
     margin-left: 4px;
-    text-decoration: underline;
   }
 `

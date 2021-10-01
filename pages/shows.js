@@ -10,7 +10,7 @@ export default function Shows({ shows }) {
   const [ showsDisplayState, setShowsDisplayState ] = useState(true); // true = Grid, false = List
   const [ sortDir, setSortDir ] = useState("DESC");                   // ASC, DESC
   const [ sortProp, setSortProp ] = useState("scheduledStartTime");   // scheduledStartTime, title
-  
+
   // TODO: Why didn't this ever work as expected?
   //
   // useEffect(() => {
@@ -31,6 +31,8 @@ export default function Shows({ shows }) {
 
   function handleOnChangeSortDir(e) {
     const newDir = e.target.dataset.sortDir === "ASC" ? "DESC" : "ASC";
+    let propDir = newDir === "ASC" ? sortProp : ("-" + sortProp);
+    shows.sort(sortByProperty(propDir));
     setSortDir(newDir);
   }
 
@@ -61,18 +63,22 @@ export default function Shows({ shows }) {
   // Keeping this guy loosy goosy for now since it has potential
   // for some cool css effects or some of that ripe design from The Geradseth
   const sortDirectionBlock = (
-    <span className="shows-sort-dir" data-sort-dir={sortDir} role="button" onClick={handleOnChangeSortDir}>{sortDir}</span>
+    <span className="shows-sort-dir" data-sort-dir={sortDir} role="button" onClick={handleOnChangeSortDir}></span>
   );
 
   return (
     <Layout title="next-graphcms-shows / Shows">
       <Title>Shows</Title>
 
-      <ToggleBtn displayState={showsDisplayState} />
+      <div className="display-util">
+        <ToggleBtn displayState={showsDisplayState} />
 
-      <Select selectedValue={sortProp} />
-
-      {sortDirectionBlock}
+        <label className="sorting-inputs">
+          Sort
+          <Select selectedValue={sortProp} />
+        </label>
+        {sortDirectionBlock}
+      </div>
 
       {!showsDisplayState &&
         <List>

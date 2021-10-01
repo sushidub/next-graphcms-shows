@@ -28,10 +28,8 @@ export default function Layout({
       </Main>
 
       <Footer>
-        <span>
-          &copy; 2021 Codeval. Content is available under
-          <Link href="/license"><a>this license</a></Link>.
-        </span>
+        &copy; 2021 <a className="link-cloak" href="/">Codeval</a>. Content is available under
+        <Link href="/license"><a className="link-default-underline">this license</a></Link>.
       </Footer>
     </Container>
   )
