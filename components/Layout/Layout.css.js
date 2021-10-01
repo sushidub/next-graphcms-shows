@@ -20,6 +20,33 @@ export const Main = styled.main`
   align-items: ${(p) => p.alignItems};
   width: 100%;
   max-width: ${(p) => p.maxWidth};
+
+  .debug {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 2rem;
+    font-style: normal;
+    font-size: 1rem;
+    background-color: red;
+  }
+
+  blockquote {
+    position: relative;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  blockquote::before {
+    content: '"';
+    z-index: 0;
+    position: absolute;
+    font-size: 10rem;
+    transform: translate(-50px,-50px);
+    font-family: monos;
+    font-style: italic;
+    opacity: .25;
+  }
 `
 
 export const Footer = styled.footer`

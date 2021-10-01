@@ -5,6 +5,7 @@ import FlexyRow from '@c/FlexyRow'
 import { Title } from '@c/Title'
 import { getShowBySlug } from '@l/graphcms'
 import { formatUSD, formatDate } from '@l/utils'
+import Custom404 from '../404.js'
 
 const Markdown = styled(ReactMarkdown)`
   img {
@@ -39,43 +40,48 @@ const Portrait = ({ images = [] }) => {
   return null
 }
 
-export default function Shows({ show }) {
-  return (
-    <Layout title={`${show.title} / next-graphcms-shows`} maxWidth="900px" padding="0 2em">
-      <Title>{show.title}</Title>
+export default function Shows({ show, slug }) {
+  if (!show || !show.title) {
+    // slug provided in the case the url string gets used in the 404 message, probably not
+    return Custom404(slug);
+  } else {
+    return (
+      <Layout title={`${show.title} / next-graphcms-shows`} maxWidth="900px" padding="0 2em">
+        <i className="debug">{show.title}</i>
+        <Title>{show.title}</Title>
 
-      <FlexyRow>
-        <span>Price: {formatUSD(show.ticketPrice)}</span>
-        <span>{formatDate(show.scheduledStartTime)}</span>
-      </FlexyRow>
+        <FlexyRow>
+          <span>Price: {formatUSD(show.ticketPrice)}</span>
+          <span>{formatDate(show.scheduledStartTime)}</span>
+        </FlexyRow>
 
-      <Markdown source={show.description} />
+        <Markdown source={show.description} />
 
-      {show.artists.map(artist => (
-        <div key={artist.id}>
-          <ArtistName>{artist.fullName}</ArtistName>
+        {show.artists.map(artist => (
+          <div key={artist.id}>
+            <ArtistName>{artist.fullName}</ArtistName>
 
-          <Portrait images={artist.images} />
+            <Portrait images={artist.images} />
 
-          <FlexyRow justify="flex-start">
-            <a href={ artist.webUrl = artist.webUrl.substr("http") ? "http://" + artist.webUrl : artist.webUrl } target="_blank">Website</a>
-            <a href={artist.facebookUrl} target="_blank">Facebook</a>
-            <a href={artist.instagramUrl} target="_blank">Instagram</a>
-            <a href={artist.youTubeUrl} target="_blank">YouTube</a>
-          </FlexyRow>
+            <FlexyRow justify="flex-start">
+              <a href={ artist.webUrl = artist.webUrl.substr("http") ? "http://" + artist.webUrl : artist.webUrl } target="_blank">Website</a>
+              <a href={artist.facebookUrl} target="_blank">Facebook</a>
+              <a href={artist.instagramUrl} target="_blank">Instagram</a>
+              <a href={artist.youTubeUrl} target="_blank">YouTube</a>
+            </FlexyRow>
 
-          <Markdown source={artist.bio} />
-        </div>
-      ))}
-    </Layout>
-  )
+            <Markdown source={artist.bio} />
+          </div>
+        ))}
+      </Layout>
+    )
+  }
 }
 
 export async function getServerSideProps({ params }) {
   const { slug } = params
   const show = (await getShowBySlug(slug))
-
   return {
-    props: { show },
+    props: { show, slug },
   }
 }
