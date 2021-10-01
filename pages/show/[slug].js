@@ -1,5 +1,6 @@
 import ReactMarkdown from 'react-markdown'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import Link from 'next/link'
 import Layout from '@c/Layout'
 import FlexyRow from '@c/FlexyRow'
 import { Title } from '@c/Title'
@@ -15,7 +16,7 @@ const Markdown = styled(ReactMarkdown)`
   }
 `
 
-const ArtistName = styled.h2`
+const ArtistName = css`
   text-align: center;
 `
 
@@ -58,19 +59,15 @@ export default function Shows({ show, slug }) {
 
         {show.artists.map(artist => (
           <div key={artist.id}>
-            <ArtistName>{artist.fullName}</ArtistName>
+            {console.log("artist: %O",artist)}
+
+            <Link href={`/artist/${artist.slug}`} passHref>
+              <a css={ArtistName} title={artist.fullName}>
+                <h2>{artist.fullName}</h2>
+              </a>
+            </Link>
 
             <Portrait images={artist.images} />
-
-            <FlexyRow justify="flex-start">
-              { artist.webUrl && (artist.webUrl = artist.webUrl.substr(0,4) === "http" ? artist.webUrl : "http://" + artist.webUrl) && <a href={artist.webUrl} target="_blank">Website</a> }
-              { artist.spotifyUrl && <a href={artist.spotifyUrl} target="_blank">Spotify</a> }
-              { artist.facebookUrl && <a href={artist.facebookUrl} target="_blank">Facebook</a> }
-              { artist.instagramUrl && <a href={artist.instagramUrl} target="_blank">Instagram</a> }
-              { artist.youTubeUrl && <a href={artist.youTubeUrl} target="_blank">YouTube</a> }
-            </FlexyRow>
-
-            <Markdown source={artist.bio} />
           </div>
         ))}
       </Layout>
